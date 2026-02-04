@@ -1,7 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
+import cors from "cors";
 import { connectDB } from "./config/database.js";
-import roleRoutes from "./routes/RoleRoute.js";
+import roleRoutes from "./routes/roleRoute.js";
 import questionRoutes from "./routes/questionRoutes.js";
 
 // Creating express object
@@ -12,7 +13,8 @@ dotenv.config();
 
 // Port Number
 const PORT = process.env.PORT || 5000;
-
+app.use(cors());
+app.use(express.json());
 // Route mount
 app.use("/api/roles", roleRoutes);
 app.use("/api/questions", questionRoutes);
